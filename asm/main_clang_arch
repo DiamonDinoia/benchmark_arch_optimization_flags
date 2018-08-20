@@ -1,13 +1,192 @@
 	.text
 	.file	"main.cpp"
-	.globl	main                    # -- Begin function main
+	.section	.rodata.cst16,"aM",@progbits,16
+	.p2align	4               # -- Begin function main
+.LCPI0_0:
+	.long	1127219200              # 0x43300000
+	.long	1160773632              # 0x45300000
+	.long	0                       # 0x0
+	.long	0                       # 0x0
+.LCPI0_1:
+	.quad	4841369599423283200     # double 4503599627370496
+	.quad	4985484787499139072     # double 1.9342813113834067E+25
+	.section	.rodata.cst8,"aM",@progbits,8
+	.p2align	3
+.LCPI0_2:
+	.quad	4607182418800017408     # double 1
+.LCPI0_3:
+	.quad	-4616189618054758400    # double -1
+.LCPI0_4:
+	.quad	4616189618054758400     # double 4
+.LCPI0_5:
+	.quad	4741671816366391296     # double 1.0E+9
+	.text
+	.globl	main
 	.p2align	4, 0x90
 	.type	main,@function
 main:                                   # @main
 	.cfi_startproc
 # %bb.0:
+	pushq	%r15
+	.cfi_def_cfa_offset 16
+	pushq	%r14
+	.cfi_def_cfa_offset 24
+	pushq	%r12
+	.cfi_def_cfa_offset 32
+	pushq	%rbx
+	.cfi_def_cfa_offset 40
+	pushq	%rax
+	.cfi_def_cfa_offset 48
+	.cfi_offset %rbx, -40
+	.cfi_offset %r12, -32
+	.cfi_offset %r14, -24
+	.cfi_offset %r15, -16
+	xorl	%ebx, %ebx
+	callq	_ZNSt6chrono3_V212system_clock3nowEv
+	vxorpd	%xmm6, %xmm6, %xmm6
+	movq	%rax, %r14
+	vmovdqa	.LCPI0_0(%rip), %xmm0   # xmm0 = [1127219200,1160773632,0,0]
+	vmovapd	.LCPI0_1(%rip), %xmm1   # xmm1 = [4.503600e+15,1.934281e+25]
+	vmovsd	.LCPI0_2(%rip), %xmm2   # xmm2 = mem[0],zero
+	vmovsd	.LCPI0_3(%rip), %xmm3   # xmm3 = mem[0],zero
+	.p2align	4, 0x90
+.LBB0_1:                                # =>This Inner Loop Header: Depth=1
+	vmovq	%rbx, %xmm4
+	vpunpckldq	%xmm0, %xmm4, %xmm4 # xmm4 = xmm4[0],xmm0[0],xmm4[1],xmm0[1]
+	vsubpd	%xmm1, %xmm4, %xmm4
+	vhaddpd	%xmm4, %xmm4, %xmm4
+	vaddsd	%xmm4, %xmm4, %xmm4
+	vaddsd	%xmm2, %xmm4, %xmm4
+	leaq	1(%rbx), %rax
+	vmovq	%rax, %xmm5
+	vpunpckldq	%xmm0, %xmm5, %xmm5 # xmm5 = xmm5[0],xmm0[0],xmm5[1],xmm0[1]
+	vsubpd	%xmm1, %xmm5, %xmm5
+	vhaddpd	%xmm5, %xmm5, %xmm5
+	vdivsd	%xmm4, %xmm2, %xmm4
+	vaddsd	%xmm4, %xmm6, %xmm4
+	vaddsd	%xmm5, %xmm5, %xmm5
+	vaddsd	%xmm2, %xmm5, %xmm5
+	vdivsd	%xmm5, %xmm3, %xmm5
+	leaq	2(%rbx), %rax
+	vmovq	%rax, %xmm6
+	vpunpckldq	%xmm0, %xmm6, %xmm6 # xmm6 = xmm6[0],xmm0[0],xmm6[1],xmm0[1]
+	vsubpd	%xmm1, %xmm6, %xmm6
+	vhaddpd	%xmm6, %xmm6, %xmm6
+	vaddsd	%xmm5, %xmm4, %xmm4
+	vaddsd	%xmm6, %xmm6, %xmm5
+	vaddsd	%xmm2, %xmm5, %xmm5
+	vdivsd	%xmm5, %xmm2, %xmm5
+	vaddsd	%xmm5, %xmm4, %xmm4
+	leaq	3(%rbx), %rax
+	vmovq	%rax, %xmm5
+	vpunpckldq	%xmm0, %xmm5, %xmm5 # xmm5 = xmm5[0],xmm0[0],xmm5[1],xmm0[1]
+	vsubpd	%xmm1, %xmm5, %xmm5
+	vhaddpd	%xmm5, %xmm5, %xmm5
+	vaddsd	%xmm5, %xmm5, %xmm5
+	vaddsd	%xmm2, %xmm5, %xmm5
+	vdivsd	%xmm5, %xmm3, %xmm5
+	vaddsd	%xmm5, %xmm4, %xmm6
+	addq	$4, %rbx
+	cmpq	$1000000000, %rbx       # imm = 0x3B9ACA00
+	jne	.LBB0_1
+# %bb.2:
+	vmulsd	.LCPI0_4(%rip), %xmm6, %xmm0
+	vmovsd	%xmm0, (%rsp)           # 8-byte Spill
+	callq	_ZNSt6chrono3_V212system_clock3nowEv
+	movq	%rax, %r15
+	movl	$_ZSt4cout, %edi
+	movl	$.L.str, %esi
+	movl	$11, %edx
+	callq	_ZSt16__ostream_insertIcSt11char_traitsIcEERSt13basic_ostreamIT_T0_ES6_PKS3_l
+	movl	$_ZSt4cout, %edi
+	movl	$1000000000, %esi       # imm = 0x3B9ACA00
+	callq	_ZNSo9_M_insertImEERSoT_
+	movq	%rax, %rbx
+	movl	$.L.str.1, %esi
+	movl	$7, %edx
+	movq	%rax, %rdi
+	callq	_ZSt16__ostream_insertIcSt11char_traitsIcEERSt13basic_ostreamIT_T0_ES6_PKS3_l
+	movq	%rbx, %rdi
+	vmovsd	(%rsp), %xmm0           # 8-byte Reload
+                                        # xmm0 = mem[0],zero
+	callq	_ZNSo9_M_insertIdEERSoT_
+	movq	%rax, %r12
+	movq	(%rax), %rax
+	movq	-24(%rax), %rax
+	movq	240(%r12,%rax), %rbx
+	testq	%rbx, %rbx
+	je	.LBB0_11
+# %bb.3:
+	cmpb	$0, 56(%rbx)
+	je	.LBB0_5
+# %bb.4:
+	movb	67(%rbx), %al
+	jmp	.LBB0_6
+.LBB0_5:
+	movq	%rbx, %rdi
+	callq	_ZNKSt5ctypeIcE13_M_widen_initEv
+	movq	(%rbx), %rax
+	movl	$10, %esi
+	movq	%rbx, %rdi
+	callq	*48(%rax)
+.LBB0_6:
+	movsbl	%al, %esi
+	movq	%r12, %rdi
+	callq	_ZNSo3putEc
+	movq	%rax, %rdi
+	callq	_ZNSo5flushEv
+	subq	%r14, %r15
+	vcvtsi2sdq	%r15, %xmm7, %xmm0
+	vdivsd	.LCPI0_5(%rip), %xmm0, %xmm0
+	vmovsd	%xmm0, (%rsp)           # 8-byte Spill
+	movl	$_ZSt4cout, %edi
+	movl	$.L.str.2, %esi
+	movl	$5, %edx
+	callq	_ZSt16__ostream_insertIcSt11char_traitsIcEERSt13basic_ostreamIT_T0_ES6_PKS3_l
+	movl	$_ZSt4cout, %edi
+	vmovsd	(%rsp), %xmm0           # 8-byte Reload
+                                        # xmm0 = mem[0],zero
+	callq	_ZNSo9_M_insertIdEERSoT_
+	movq	%rax, %r14
+	movq	(%rax), %rax
+	movq	-24(%rax), %rax
+	movq	240(%r14,%rax), %rbx
+	testq	%rbx, %rbx
+	je	.LBB0_11
+# %bb.7:
+	cmpb	$0, 56(%rbx)
+	je	.LBB0_9
+# %bb.8:
+	movb	67(%rbx), %al
+	jmp	.LBB0_10
+.LBB0_9:
+	movq	%rbx, %rdi
+	callq	_ZNKSt5ctypeIcE13_M_widen_initEv
+	movq	(%rbx), %rax
+	movl	$10, %esi
+	movq	%rbx, %rdi
+	callq	*48(%rax)
+.LBB0_10:
+	movsbl	%al, %esi
+	movq	%r14, %rdi
+	callq	_ZNSo3putEc
+	movq	%rax, %rdi
+	callq	_ZNSo5flushEv
 	xorl	%eax, %eax
+	addq	$8, %rsp
+	.cfi_def_cfa_offset 40
+	popq	%rbx
+	.cfi_def_cfa_offset 32
+	popq	%r12
+	.cfi_def_cfa_offset 24
+	popq	%r14
+	.cfi_def_cfa_offset 16
+	popq	%r15
+	.cfi_def_cfa_offset 8
 	retq
+.LBB0_11:
+	.cfi_def_cfa_offset 48
+	callq	_ZSt16__throw_bad_castv
 .Lfunc_end0:
 	.size	main, .Lfunc_end0-main
 	.cfi_endproc
@@ -36,6 +215,22 @@ _GLOBAL__sub_I_main.cpp:                # @_GLOBAL__sub_I_main.cpp
 	.local	_ZStL8__ioinit
 	.comm	_ZStL8__ioinit,1,1
 	.hidden	__dso_handle
+	.type	.L.str,@object          # @.str
+	.section	.rodata.str1.1,"aMS",@progbits,1
+.L.str:
+	.asciz	"iterations "
+	.size	.L.str, 12
+
+	.type	.L.str.1,@object        # @.str.1
+.L.str.1:
+	.asciz	" value "
+	.size	.L.str.1, 8
+
+	.type	.L.str.2,@object        # @.str.2
+.L.str.2:
+	.asciz	"time "
+	.size	.L.str.2, 6
+
 	.section	.init_array,"aw",@init_array
 	.p2align	3
 	.quad	_GLOBAL__sub_I_main.cpp
@@ -46,3 +241,4 @@ _GLOBAL__sub_I_main.cpp:                # @_GLOBAL__sub_I_main.cpp
 	.addrsig_sym _GLOBAL__sub_I_main.cpp
 	.addrsig_sym _ZStL8__ioinit
 	.addrsig_sym __dso_handle
+	.addrsig_sym _ZSt4cout

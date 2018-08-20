@@ -1,5 +1,12 @@
 	.file	"main.cpp"
 	.text
+	.section	.rodata.str1.1,"aMS",@progbits,1
+.LC2:
+	.string	"iterations "
+.LC3:
+	.string	" value "
+.LC6:
+	.string	"time "
 	.section	.text.startup,"ax",@progbits
 	.p2align 4,,15
 	.globl	main
@@ -7,7 +14,82 @@
 main:
 .LFB1893:
 	.cfi_startproc
+	pushq	%r12
+	.cfi_def_cfa_offset 16
+	.cfi_offset 12, -16
+	pushq	%rbp
+	.cfi_def_cfa_offset 24
+	.cfi_offset 6, -24
+	pushq	%rbx
+	.cfi_def_cfa_offset 32
+	.cfi_offset 3, -32
+	subq	$16, %rsp
+	.cfi_def_cfa_offset 48
+	call	_ZNSt6chrono3_V212system_clock3nowEv
+	pxor	%xmm0, %xmm0
+	movl	$1, %edx
+	movsd	.LC1(%rip), %xmm3
+	movq	%rax, %r12
 	xorl	%eax, %eax
+	.p2align 4,,10
+	.p2align 3
+.L2:
+	pxor	%xmm1, %xmm1
+	pxor	%xmm2, %xmm2
+	cvtsi2sdq	%rax, %xmm1
+	addq	$1, %rax
+	cvtsi2sd	%edx, %xmm2
+	negl	%edx
+	addsd	%xmm1, %xmm1
+	addsd	%xmm3, %xmm1
+	divsd	%xmm1, %xmm2
+	addsd	%xmm2, %xmm0
+	cmpq	$1000000000, %rax
+	jne	.L2
+	movsd	%xmm0, 8(%rsp)
+	call	_ZNSt6chrono3_V212system_clock3nowEv
+	movl	$11, %edx
+	movl	$.LC2, %esi
+	movl	$_ZSt4cout, %edi
+	movq	%rax, %rbx
+	call	_ZSt16__ostream_insertIcSt11char_traitsIcEERSt13basic_ostreamIT_T0_ES6_PKS3_l
+	movl	$1000000000, %esi
+	movl	$_ZSt4cout, %edi
+	subq	%r12, %rbx
+	call	_ZNSo9_M_insertImEERSoT_
+	movl	$7, %edx
+	movl	$.LC3, %esi
+	movq	%rax, %rdi
+	movq	%rax, %rbp
+	call	_ZSt16__ostream_insertIcSt11char_traitsIcEERSt13basic_ostreamIT_T0_ES6_PKS3_l
+	movsd	8(%rsp), %xmm0
+	movq	%rbp, %rdi
+	mulsd	.LC4(%rip), %xmm0
+	call	_ZNSo9_M_insertIdEERSoT_
+	movq	%rax, %rdi
+	call	_ZSt4endlIcSt11char_traitsIcEERSt13basic_ostreamIT_T0_ES6_
+	movl	$5, %edx
+	movl	$.LC6, %esi
+	movl	$_ZSt4cout, %edi
+	pxor	%xmm0, %xmm0
+	cvtsi2sdq	%rbx, %xmm0
+	divsd	.LC5(%rip), %xmm0
+	movsd	%xmm0, 8(%rsp)
+	call	_ZSt16__ostream_insertIcSt11char_traitsIcEERSt13basic_ostreamIT_T0_ES6_PKS3_l
+	movsd	8(%rsp), %xmm0
+	movl	$_ZSt4cout, %edi
+	call	_ZNSo9_M_insertIdEERSoT_
+	movq	%rax, %rdi
+	call	_ZSt4endlIcSt11char_traitsIcEERSt13basic_ostreamIT_T0_ES6_
+	addq	$16, %rsp
+	.cfi_def_cfa_offset 32
+	xorl	%eax, %eax
+	popq	%rbx
+	.cfi_def_cfa_offset 24
+	popq	%rbp
+	.cfi_def_cfa_offset 16
+	popq	%r12
+	.cfi_def_cfa_offset 8
 	ret
 	.cfi_endproc
 .LFE1893:
@@ -15,7 +97,7 @@ main:
 	.p2align 4,,15
 	.type	_GLOBAL__sub_I_main, @function
 _GLOBAL__sub_I_main:
-.LFB2374:
+.LFB2392:
 	.cfi_startproc
 	subq	$8, %rsp
 	.cfi_def_cfa_offset 16
@@ -28,13 +110,26 @@ _GLOBAL__sub_I_main:
 	.cfi_def_cfa_offset 8
 	jmp	__cxa_atexit
 	.cfi_endproc
-.LFE2374:
+.LFE2392:
 	.size	_GLOBAL__sub_I_main, .-_GLOBAL__sub_I_main
 	.section	.init_array,"aw"
 	.align 8
 	.quad	_GLOBAL__sub_I_main
 	.local	_ZStL8__ioinit
 	.comm	_ZStL8__ioinit,1,1
+	.section	.rodata.cst8,"aM",@progbits,8
+	.align 8
+.LC1:
+	.long	0
+	.long	1072693248
+	.align 8
+.LC4:
+	.long	0
+	.long	1074790400
+	.align 8
+.LC5:
+	.long	0
+	.long	1104006501
 	.hidden	__dso_handle
 	.ident	"GCC: (Ubuntu 8.1.0-5ubuntu1~16.04) 8.1.0"
 	.section	.note.GNU-stack,"",@progbits
