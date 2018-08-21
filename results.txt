@@ -1,18 +1,18 @@
 main_clang
 iterations 1000000000 value 3.14159
-time 5.70509
+time 5.70893
 main_clang_arch
 iterations 1000000000 value 3.14159
-time 1.39697
+time 1.21312
 main_clang_o2
 iterations 1000000000 value 3.14159
-time 6.0618
+time 6.01251
 main_gcc
 iterations 1000000000 value 3.14159
-time 9.15563
+time 9.08183
 main_gcc_arch
 iterations 1000000000 value 3.14159
-time 9.14826
+time 4.7192
 main_gcc_o2
 iterations 1000000000 value 3.14159
-time 5.17978
+time 5.13561

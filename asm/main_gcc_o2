@@ -12,7 +12,7 @@
 	.globl	main
 	.type	main, @function
 main:
-.LFB1893:
+.LFB1785:
 	.cfi_startproc
 	pushq	%r12
 	.cfi_def_cfa_offset 16
@@ -92,12 +92,12 @@ main:
 	.cfi_def_cfa_offset 8
 	ret
 	.cfi_endproc
-.LFE1893:
+.LFE1785:
 	.size	main, .-main
 	.p2align 4,,15
 	.type	_GLOBAL__sub_I_main, @function
 _GLOBAL__sub_I_main:
-.LFB2392:
+.LFB2121:
 	.cfi_startproc
 	subq	$8, %rsp
 	.cfi_def_cfa_offset 16
@@ -110,7 +110,7 @@ _GLOBAL__sub_I_main:
 	.cfi_def_cfa_offset 8
 	jmp	__cxa_atexit
 	.cfi_endproc
-.LFE2392:
+.LFE2121:
 	.size	_GLOBAL__sub_I_main, .-_GLOBAL__sub_I_main
 	.section	.init_array,"aw"
 	.align 8

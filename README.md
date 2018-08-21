@@ -23,12 +23,12 @@ clang version 7.0.0 (trunk 338359) (llvm/trunk 338357)
 # Results
 iterations 1000000000 value 3.14159  
 
-- `clang` time 5.70509s  
-- `gcc` time 9.15563s  
-- `clang` -O2 time 6.0618s  
-- `gcc` -O2 time 5.17978s  
-- `clang` -march=native -O2 time 1.39697s  
-- `gcc` -march=native -O2 time 9.14826s  
+- `clang` time 5.70893s  
+- `gcc` time 9.08183s  
+- `clang` -O2 time 6.01251s  
+- `gcc` -O2 time 5.13561s  
+- `clang` -march=native -O2 time 1.21312s  
+- `gcc` -march=native -O2 time 4.7192s  
 
 ### References
 - http://lists.llvm.org/pipermail/cfe-dev/2016-March/048049.html
